@@ -11,4 +11,5 @@ async def on_ready():
     print("Bot is connected")
 
 
-client.run(os.getenv("BOT_TOKEN"))
+load_dotenv()
+client.run(str(os.getenv("BOT_TOKEN")))
