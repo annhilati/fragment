@@ -10,6 +10,9 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 async def on_ready():
     print("Bot is connected")
 
+@client.command()
+async def ping(ctx):
+    await ctx.send("Pong")
 
 load_dotenv()
 client.run(str(os.getenv("BOT_TOKEN")))
