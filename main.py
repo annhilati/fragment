@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
-import os
-
 import discord
 from discord.ext import commands
+
+import os
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
