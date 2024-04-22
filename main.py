@@ -17,7 +17,7 @@ async def ping(ctx):
 
 @client.command()
 async def magic_eightball(ctx, *, question):
-    with open("./magic_eight.txt", "r") as f:
+    with open("discord-bot/magic_eightball.txt", "r") as f:
         random_responses = f.readlines()
         response = random.choice(random_responses)
     await ctx.send(response)
