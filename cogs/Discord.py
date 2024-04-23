@@ -2,8 +2,8 @@ import datetime
 import discord
 from discord.ext import commands
 
-def timestamp():
-    return "[" + datetime.datetime.now().strftime("%H:%M:%S") + "]"
+def log(text):
+    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
 class Discord(commands.Cog):
     def __init__(self, client):
@@ -11,7 +11,7 @@ class Discord(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print(timestamp(), f"[Cogs] Discord is ready")
+        log(f"[Cogs] Discord is ready")
 
     @commands.command()
     async def ping(self, ctx):

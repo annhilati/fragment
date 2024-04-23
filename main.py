@@ -1,14 +1,13 @@
 import asyncio
 import datetime
 import discord
-from discord import app_commands
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 from itertools import cycle
 import os
 
-def timestamp():
-    return "[" + datetime.datetime.now().strftime("%H:%M:%S") + "]"
+def log(text):
+    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -32,7 +31,7 @@ async def load():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             await client.load_extension(f"cogs.{filename[:-3]}")
-            print(timestamp(), f"[Cogs] cogs/{filename} is loaded")
+            log(f"[Cogs] cogs/{filename} is loaded")
 
 ############ Ausführung
 
@@ -44,11 +43,9 @@ async def main():
 
 @client.event
 async def on_ready():
-    guilds_tree_sync = [1104421499827388566, 890190896530849792]
-    for guild_id in guilds_tree_sync:
-        guild = discord.Object(id=guild_id)
-        await client.tree.sync(guild=guild)  # Synchronisiert für jeden Server in der Liste
-    print(timestamp(), f"[Conn] Bot is connected")
-    print(timestamp(), f"[Conn] Logged in as {client.user} (ID: {client.user.id})")
+    guilds_tree_sync = 1104421499827388566
+    await client.tree.sync(guild=discord.Object(id=guilds_tree_sync))
+    log(f"[Conn] Bot is connected")
+    log(f"[Conn] Logged in as {client.user} (ID: {client.user.id})")
 
 asyncio.run(main())
