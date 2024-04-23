@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from utils.functions import timestamp
 
 class Discord(commands.Cog):
     def __init__(self, client):
@@ -7,7 +8,7 @@ class Discord(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print("Ping.py is ready!")
+        print(timestamp(), f"[Cogs] Discord is ready")
 
     @commands.command()
     async def ping(self, ctx):
