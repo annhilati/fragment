@@ -12,18 +12,22 @@ async def setup(client):
 class Utils_Discord(commands.Cog):
     def __init__(self, client: commands.Bot) -> None:
         self.client = client
-        self.user_details = app_commands.ContextMenu(
+
+    ### Benutzerdetails Kontextpunkt
+        self.ctx_menu = app_commands.ContextMenu(
             name='Benutzerdetails anzeigen',
-            callback=self.show_join_date,
+            callback=self.user_details,
         )
-        self.client.tree.add_command(self.user_details)
+        self.client.tree.add_command(self.ctx_menu)
 
     async def cog_unload(self) -> None:
-        self.client.tree.remove_command(self.user_details.name, type=self.user_details.type)
+        self.client.tree.remove_command(self.ctx_menu.name, type=self.ctx_menu.type)
 
     @app_commands.guilds()
-    async def show_join_date(self, interaction: discord.Interaction, member: discord.Member) -> None:
+    async def user_details(self, interaction: discord.Interaction, member: discord.Member) -> None:
         await interaction.response.send_message(f'{member} joined at {discord.utils.format_dt(member.joined_at)}')
+
+    ### 
         
     @commands.Cog.listener()
     async def on_ready(self):
