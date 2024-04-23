@@ -1,6 +1,9 @@
+import datetime
 import discord
 from discord.ext import commands
-from utils.functions import timestamp
+
+def timestamp():
+    return "[" + datetime.datetime.now().strftime("%H:%M:%S") + "]"
 
 class Discord(commands.Cog):
     def __init__(self, client):
@@ -13,7 +16,6 @@ class Discord(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         await ctx.send("Pong!")
-
 
 async def setup(client):
     await client.add_cog(Discord(client))

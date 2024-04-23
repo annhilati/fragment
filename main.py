@@ -1,9 +1,13 @@
 import asyncio
+import datetime
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import os
-from utils.functions import timestamp
+
+def timestamp():
+    return "[" + datetime.datetime.now().strftime("%H:%M:%S") + "]"
+
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
