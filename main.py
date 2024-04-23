@@ -18,12 +18,11 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 #     if isinstance(error, commands.MissingPermissions):
 #         await ctx.send("You dont have all the requirements")
 
-############ Apps
+@client.command()
+async def tree_sync(ctx):
+    await client.tree.sync()
+    log("[Conn] App Commands have been synchronized by someone")
 
-@client.tree.context_menu(name='Show Join Date')
-async def show_join_date(interaction: discord.Interaction, member: discord.Member):
-    # The format_dt function formats the date time into a human readable representation in the official client
-    await interaction.response.send_message(f'{member} joined at {discord.utils.format_dt(member.joined_at)}')
 
 ############ Laden der Cogs
 
@@ -43,8 +42,6 @@ async def main():
 
 @client.event
 async def on_ready():
-    guilds_tree_sync = 1104421499827388566
-    await client.tree.sync(guild=discord.Object(id=guilds_tree_sync))
     log(f"[Conn] Bot is connected")
     log(f"[Conn] Logged in as {client.user} (ID: {client.user.id})")
 
