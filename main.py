@@ -1,8 +1,9 @@
 import asyncio
 import datetime
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from dotenv import load_dotenv
+from itertools import cycle
 import os
 
 def timestamp():
@@ -18,6 +19,11 @@ async def load():
             await client.load_extension(f"cogs.{filename[:-3]}")
             print(timestamp(), f"[Cogs] cogs/{filename} is loaded")
 
+#bot_statuses = cycle(["mit der Discord-API", "mit der Discord-API"])
+#@tasks.loop(seconds=5)
+#async def change_status():
+#    await client.change_presence(activity=discord.Game(next(bot_statuses)))
+
 ### Ausführung
 load_dotenv() # Läd die Umgebungsvariabeln
 async def main():
@@ -28,5 +34,6 @@ async def main():
 @client.event
 async def on_ready():
     print(timestamp(), f"[Conn] Bot is connected")
+#    change_status.start()
 
 asyncio.run(main())
