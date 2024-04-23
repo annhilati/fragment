@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
-
+import asyncio
 import os
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
@@ -10,9 +10,16 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 async def on_ready():
     print("Bot is connected")
 
-@client.command()
-async def ping(ctx):
-    await ctx.send("Pong")
+async def load():
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await client.load_extension(f"cogs.{filename[:-3]}")
+            print(f"{filename[:-3]} is loaded")
 
 load_dotenv()
-client.run(str(os.getenv("BOT_TOKEN")))
+async def main():
+    async with client:
+        await load()
+        await client.start(str(os.getenv("BOT_TOKEN")))
+
+asyncio.run(main())
