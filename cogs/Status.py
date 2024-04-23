@@ -3,8 +3,8 @@ import discord
 from discord.ext import commands, tasks
 from itertools import cycle
 
-def timestamp():
-    return "[" + datetime.datetime.now().strftime("%H:%M:%S") + "]"
+def log(text):
+    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
 class Status(commands.Cog):
     def __init__(self, client):
@@ -24,7 +24,7 @@ class Status(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(timestamp(), f"[Cogs] Status is ready")
+        log(f"[Cogs] Status is ready")
 
 async def setup(client):
     await client.add_cog(Status(client))
