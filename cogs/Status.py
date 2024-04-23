@@ -9,7 +9,7 @@ def timestamp():
 class Status(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.bot_statuses = cycle(["mit der Discord-API", "mit Python-Bots"])  # Rotierende Statusmeldungen
+        self.bot_statuses = cycle(["mit der Discord-API", "mit Python-Bots"])  # Liste aller Status
         self.change_status.start()  # Startet den Status-Loop, wenn der Cog geladen wird
 
     @tasks.loop(seconds=5)
