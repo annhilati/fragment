@@ -1,1 +1,0 @@
-pip install discord.js python-dotenv
