@@ -32,17 +32,17 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("Fehlende Argumente")
 
-
 #-------------------------------------------------#
 #              App-Synchronisierung               #
 #-------------------------------------------------#
 
 @client.command()
-async def tree_sync(ctx, arg=None):
-    if arg == client.user.id:
+async def tree_sync(ctx, code: int):
+    if code == client.user.id:
         await client.tree.sync()
-        log("[Conn] App Commands have been synchronized by someone")
-
+        await ctx.message.add_reaction("✅")
+        log(f"[Conn] App Commands have been synchronized by {ctx.author.name} ({ctx.author.id}) in {ctx.guild.name} ({ctx.guild.id})")
+        
 #-------------------------------------------------#
 #                 Hauptprogramm                   #
 #-------------------------------------------------#
@@ -64,4 +64,4 @@ async def on_ready():
     log(f"[Conn] Bot is connected")
     log(f"[Conn] Logged in as {client.user} (ID: {client.user.id})")
 
-asyncio.run(main())
+asyncio.run(main()) # Diese Zeile wird fortlaufend ausgeführt und sollte deswegen am Ende stehen
