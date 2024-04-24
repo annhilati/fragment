@@ -11,18 +11,10 @@ def log(text):
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
-# @client.event
-# async def on_command_error(ctx, error):
-#     if isinstance(error, commands.MissingRequiredArgument):
-#         await ctx.send("Please pass in all requirements")
-#     if isinstance(error, commands.MissingPermissions):
-#         await ctx.send("You dont have all the requirements")
-
 @client.command()
 async def tree_sync(ctx):
     await client.tree.sync()
     log("[Conn] App Commands have been synchronized by someone")
-
 
 ############ Laden der Cogs
 
