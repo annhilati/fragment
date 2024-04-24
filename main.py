@@ -36,12 +36,13 @@ async def on_command_error(ctx, error):
 #              App-Synchronisierung               #
 #-------------------------------------------------#
 
-@client.command()
+@client.command(aliases=["sudo sync"])
 async def tree_sync(ctx, code: int):
     if code == client.user.id:
         await client.tree.sync()
         await ctx.message.add_reaction("✅")
-        log(f"[Conn] App Commands have been synchronized by {ctx.author.name} ({ctx.author.id}) in {ctx.guild.name} ({ctx.guild.id})")
+        await ctx.reply(f"Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", mention_author=False, silent=True, delete_after=10)
+        log(f"[Conn] {ctx.author.name} ({ctx.author.id}) in {ctx.guild.name} ({ctx.guild.id}) requestes a global synchronization of all App-Commands. Synchronization can take several minutes to hours.")
         
 #-------------------------------------------------#
 #                 Hauptprogramm                   #
