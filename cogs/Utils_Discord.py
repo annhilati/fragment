@@ -22,7 +22,7 @@ class Utils_Discord(commands.Cog):
         self.client.tree.add_command(self.ctx_menu)
     async def cog_unload(self) -> None:
         self.client.tree.remove_command(self.ctx_menu.name, type=self.ctx_menu.type)
-    @app_commands.guilds()
+    @app_commands.guild_only()
     async def user_details(self, interaction: discord.Interaction, member: discord.Member) -> None:
         await interaction.response.send_message(f'{member} joined at {discord.utils.format_dt(member.joined_at)}')
 
