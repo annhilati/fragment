@@ -28,9 +28,9 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send("Fehlende Berechtigung")
+        await ctx.reply("Fehlende Berechtigung", mention_author=False)
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Fehlende Argumente")
+        await ctx.reply("Fehlende Argumente", mention_author=False)
 
 #-------------------------------------------------#
 #              App-Synchronisierung               #
