@@ -26,7 +26,7 @@ class Utils_Discord(commands.Cog):
     async def user_details(self, interaction: discord.Interaction, member: discord.Member) -> None:
         await interaction.response.send_message(f'{member} joined at {discord.utils.format_dt(member.joined_at)}')
 
-    ### 
+    ######### 
         
     @commands.Cog.listener()
     async def on_ready(self):
