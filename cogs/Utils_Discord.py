@@ -3,8 +3,17 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
+#-------------------------------------------------#
+#             Funktionsdefinitionen               #
+#                     log()                       #
+#-------------------------------------------------#
+
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
+
+#-------------------------------------------------#
+#                cog-Deklaration                  #
+#-------------------------------------------------#
 
 async def setup(client):
     await client.add_cog(Utils_Discord(client))
@@ -13,7 +22,9 @@ class Utils_Discord(commands.Cog):
     def __init__(self, client: commands.Bot) -> None:
         self.client = client
 
-    ######### Benutzerdetails Kontextpunkt
+    #-------------------------------------------------#
+    #          Benutzerdetails-Kontextpunkt           #
+    #-------------------------------------------------#
 
         self.ctx_menu = app_commands.ContextMenu(
             name='Benutzerdetails anzeigen',
