@@ -3,7 +3,6 @@ import datetime
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
-from itertools import cycle
 import os
 
 #-------------------------------------------------#
@@ -33,17 +32,19 @@ async def on_command_error(ctx, error):
         await ctx.reply("Fehlende Argumente", mention_author=False)
 
 #-------------------------------------------------#
-#              App-Synchronisierung               #
+#                  Sudo-Befehle                   #
 #-------------------------------------------------#
 
-@client.command(aliases=["sudo sync"])
-async def tree_sync(ctx, code: int):
-    if code == client.user.id:
-        await client.tree.sync()
+@client.command()
+async def sudo(ctx, arg1, arg2):
+    log(f"[Sudo] {ctx.author.name} ({ctx.author.id}) executed \"{ctx.message.content}\" in {ctx.guild.name} ({ctx.guild.id})")
+    if arg1 == "sync":
+        if arg2 == client.user.id:
+            await client.tree.sync()
         await ctx.message.add_reaction("✅")
         await ctx.reply(f"Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", mention_author=False, silent=True, delete_after=10)
         log(f"[Conn] {ctx.author.name} ({ctx.author.id}) in {ctx.guild.name} ({ctx.guild.id}) requestes a global synchronization of all App-Commands. Synchronization can take several minutes to hours.")
-        
+
 #-------------------------------------------------#
 #                 Hauptprogramm                   #
 #-------------------------------------------------#
