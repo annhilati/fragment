@@ -41,7 +41,7 @@ async def load():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             await client.load_extension(f"cogs.{filename[:-3]}")
-            log(f"[Cogs] cogs/{filename} is loaded")
+            log(f"[COGS] cogs/{filename} is loaded")
 
 async def main():
     load_dotenv() # Läd die Umgebungsvariabeln
@@ -51,7 +51,7 @@ async def main():
 
 @client.event
 async def on_ready():
-    log(f"[Conn] Bot is connected")
-    log(f"[Conn] Logged in as {client.user} (ID: {client.user.id})")
+    log(f"[AUTH] Bot is connected")
+    log(f"[AUTH] Logged in as {client.user} (ID: {client.user.id})")
 
 asyncio.run(main()) # Diese Zeile wird fortlaufend ausgeführt und sollte deswegen am Ende stehen

@@ -41,7 +41,7 @@ class Utils_Discord(commands.Cog):
         
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[Cogs] Utils_Discord is ready")
+        log(f"[COGS] Utils_Discord is ready")
 
     @commands.command()
     async def ping(self, ctx):

@@ -27,4 +27,4 @@ class Bot_Status(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[Cogs] Bot_Status is ready")
+        log(f"[COGS] Bot_Status is ready")
