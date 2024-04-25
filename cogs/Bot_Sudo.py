@@ -25,7 +25,7 @@ class Bot_Sudo(commands.Cog):
                 await ctx.message.add_reaction("✅")
                 await ctx.reply(f"Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", mention_author=False, silent=True, delete_after=10)
                 log(f"[Conn] {ctx.author.name} ({ctx.author.id}) in {ctx.guild.name} ({ctx.guild.id}) requestes a global synchronization of all App-Commands. Synchronization can take several minutes to hours.")
-            elif arg2 == None
+            elif arg2 == None:
                 raise commands.BadArgument("Hier wird ein Code erwartet")
             else:
                 raise commands.BadArgument("Falscher Code")
