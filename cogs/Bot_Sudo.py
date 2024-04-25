@@ -35,8 +35,12 @@ class Bot_Sudo(commands.Cog):
         if arg1 == "sync":
             if arg2 == self.client.user.id:
                 await self.client.tree.sync()
+
                 await ctx.message.add_reaction("✅")
-                await ctx.reply(f"<:Approved:1233093791657758740> Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", mention_author=False, silent=True, delete_after=10)
+                embed = discord.Embed(description=f"Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", color=3908961)
+                embed.set_author(name="Synchronisations-Anfrage versendet", icon_url="https://cdn.discordapp.com/emojis/1233093791657758740.webp")
+                await ctx.reply(embed = embed, mention_author=False, silent=True, delete_after=10)
+                
                 log(f"[SYNC] Global synchronization of all App-Commands requested. Synchronization can take several minutes to hours.")
             elif arg2 == None:
                 raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg2', annotation=str, kind=3))

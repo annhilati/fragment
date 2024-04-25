@@ -1,34 +1,56 @@
+import datetime
 import discord
 from discord.ext import commands
 
-class BotErrorHandler(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+#-------------------------------------------------#
+#             Funktionsdefinitionen               #
+#                     log()                       #
+#-------------------------------------------------#
+
+def log(text):
+    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
+
+#-------------------------------------------------#
+#                cog-Deklaration                  #
+#-------------------------------------------------#
+
+async def setup(client):
+    await client.add_cog(Bot_Error_Handler(client))
+
+class Bot_Error_Handler(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        log(f"[COGS] Bot_Error_Handler is ready")
+
+    #-------------------------------------------------#
+    #                Error-Handling                   #
+    #-------------------------------------------------#
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
-            await ctx.reply(f"<:Info:1233093266916773991> Ein Argument entsprach nicht den Erwartungen: {error}", mention_author=False)
+            embed = discord.Embed(title=f"{error}", color=15774002)
+            embed.set_author(name="Ein Argument entsprach nicht den Erwartungen", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
+            await ctx.reply(embed = embed, mention_author=False)
 
         elif isinstance(error, commands.MissingPermissions):
-            await ctx.reply(f"<:Info:1233093266916773991> Dir fehlt die Berechtigung dazu", mention_author=False)
+            embed = discord.Embed(title=f"{error}", color=15774002)
+            embed.set_author(name="Dir fehlt die Berechtigung dazu", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
+            await ctx.reply(embed = embed, mention_author=False)
         
         elif isinstance(error, commands.MissingRequiredArgument):
-            await ctx.reply(f"<:Info:1233093266916773991> Es muss ein weiteres Argument angegeben werden.", mention_author=False)
+            embed = discord.Embed(title=f"{error}", color=15774002)
+            embed.set_author(name="Es muss ein weiteres Argument angegeben werden.", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
+            await ctx.reply(embed = embed, mention_author=False)
 
-        #-------------------------------------------------#
-#                Error-Handling                   #
-#-------------------------------------------------#
-
-@client.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.reply(f"<:Info:1233093266916773991> Ein Argument entsprach nicht den Erwartungen: {error}", mention_author=False)
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.reply(f"<:Info:1233093266916773991> Dir fehlt die Berechtigung dazu", mention_author=False)
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.reply(f"<:Info:1233093266916773991> Es muss ein weiteres Argument angegeben werden.", mention_author=False)
-
-# Funktion, um den Cog zum Bot hinzuzufügen
-def setup(bot):
-    bot.add_cog(BotErrorHandler(bot))
+        # @client.event
+        # async def on_command_error(ctx, error):
+        #     if isinstance(error, commands.BadArgument):
+        #         await ctx.reply(f"<:Info:1233093266916773991> Ein Argument entsprach nicht den Erwartungen: {error}",       mention_author=False)
+        #     if isinstance(error, commands.MissingPermissions):
+        #         await ctx.reply(f"<:Info:1233093266916773991> Dir fehlt die Berechtigung dazu", mention_author=False)
+        #     if isinstance(error, commands.MissingRequiredArgument):
+        #         await ctx.reply(f"<:Info:1233093266916773991> Es muss ein weiteres Argument angegeben werden.", mention_author=False)
