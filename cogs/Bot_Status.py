@@ -3,8 +3,17 @@ import discord
 from discord.ext import commands, tasks
 from itertools import cycle
 
+#-------------------------------------------------#
+#             Funktionsdefinitionen               #
+#                     log()                       #
+#-------------------------------------------------#
+
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
+
+#-------------------------------------------------#
+#                cog-Deklaration                  #
+#-------------------------------------------------#
 
 async def setup(client):
     await client.add_cog(Bot_Status(client))

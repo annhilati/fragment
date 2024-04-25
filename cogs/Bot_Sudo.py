@@ -2,8 +2,17 @@ import datetime
 import discord
 from discord.ext import commands, tasks
 
+#-------------------------------------------------#
+#             Funktionsdefinitionen               #
+#                     log()                       #
+#-------------------------------------------------#
+
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
+
+#-------------------------------------------------#
+#                cog-Deklaration                  #
+#-------------------------------------------------#
 
 async def setup(client):
     await client.add_cog(Bot_Sudo(client))
@@ -11,6 +20,10 @@ async def setup(client):
 class Bot_Sudo(commands.Cog):
     def __init__(self, client):
         self.client = client
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        log(f"[COGS] Bot_Sudo is ready")
         
     #-------------------------------------------------#
     #                  Sudo-Befehle                   #
@@ -33,7 +46,3 @@ class Bot_Sudo(commands.Cog):
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
         else:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        log(f"[COGS] Bot_Sudo is ready")
