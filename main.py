@@ -27,11 +27,11 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        await ctx.reply(f"Error BadArgument: {error}", mention_author=False)
+        await ctx.reply(f"<:Info:1233093266916773991> Ein Argument entsprach nicht den Erwartungen: {error}", mention_author=False)
     if isinstance(error, commands.MissingPermissions):
-        await ctx.reply(f"Fehlende Berechtigung", mention_author=False)
+        await ctx.reply(f"<:Info:1233093266916773991> Dir fehlt die Berechtigung dazu", mention_author=False)
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.reply(f"Fehlende Argumente", mention_author=False)
+        await ctx.reply(f"<:Info:1233093266916773991> Es muss ein weiteres Argument angegeben werden.", mention_author=False)
 
 #-------------------------------------------------#
 #                 Hauptprogramm                   #
