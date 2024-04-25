@@ -35,12 +35,19 @@ class Utils_Member(commands.Cog):
 
     @app_commands.guild_only()
     async def user_details(self, interaction: discord.Interaction, member: discord.Member) -> None:
-        #await interaction.response.send_message(f'{member} joined at {discord.utils.format_dt(member.joined_at)}')
-        user_details = discord.Embed(title=f"{member.global_name}",
+        if member.bot == False:
+            user_details = discord.Embed(title=f"{member.global_name}",
+                                     description=f"Username: `{member}`\nID: `{member.id}`",
+                                     #color=discord.Color.blurple()
+                                     color=member.color)
+        else:
+            user_details = discord.Embed(title=f"{member.name}",
                                      description=f"Username: `{member}`\nID: `{member.id}`",
                                      color=discord.Color.blurple())
         user_details.set_thumbnail(url=member.avatar)
-        user_details.add_field(name=f"<:Invite:1233101325970178099> {member.guild.name} beigetreten",
+        user_details.add_field(name=f"<:Invite:1233105955038957578> Account erstellt",
+                               value=f"Am {discord.utils.format_dt(member.created_at)}")
+        user_details.add_field(name=f"<:NewMember:1233106416781230181> {member.guild.name} beigetreten",
                                value=f"Am {discord.utils.format_dt(member.joined_at)}")
         await interaction.response.send_message(embed = user_details)
 
