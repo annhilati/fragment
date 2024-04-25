@@ -37,6 +37,6 @@ class Testing(commands.Cog):
 
     @commands.command()
     async def test2(self, ctx):
-        raise commands.MissingRequiredArgument(
-            param=commands.Parameter(name='arg1', annotation=str, kind=3)
-        )
+        embed = discord.Embed(color=15774002)
+        embed.set_author(name="Es muss ein weiteres Argument angegeben werden.", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
+        await ctx.send(embed = embed)
