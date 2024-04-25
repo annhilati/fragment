@@ -33,7 +33,8 @@ class Bot_Sudo(commands.Cog):
     async def sudo(self, ctx, arg1=None, arg2=None):
         log(f"[SUDO] {ctx.author.name} ({ctx.author.id}) executed \"{ctx.message.content}\" in {ctx.guild.name} ({ctx.guild.id})")
         if arg1 == "sync":
-            if arg2 == self.client.user.id:
+            await ctx.send(self.client.user.id)
+            if arg2 == str(self.client.user.id):
                 await self.client.tree.sync()
 
                 await ctx.message.add_reaction("✅")
