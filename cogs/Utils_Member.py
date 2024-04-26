@@ -2,6 +2,7 @@ import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
+import humanize
 
 #-------------------------------------------------#
 #             Funktionsdefinitionen               #
@@ -51,6 +52,14 @@ class Utils_Member(commands.Cog):
                                value=f"Am {discord.utils.format_dt(member.created_at)}")
         user_details.add_field(name=f"<:NewMember:1233106416781230181> {member.guild.name} beigetreten",
                                value=f"Am {discord.utils.format_dt(member.joined_at)}")
+        
+        user_details.add_field(name="  ", value="  ", inline=False) # Dieses Feld sorgt für eine Lücke zwischen den Reihen
+        if member.timed_out_until != None:
+            user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
+                                   value=f"Bis <t:{str(member.timed_out_until.timestamp())[:-4]}:R>",)
+        else:
+            user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
+                                   value=f"Nicht im Timeout",)
         
         await interaction.response.send_message(embed = user_details)
 
