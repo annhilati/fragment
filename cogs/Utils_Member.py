@@ -33,15 +33,17 @@ class Utils_Member(commands.Cog):
     async def cog_unload(self) -> None:
         self.client.tree.remove_command(self.ctx_menu.name, type=self.ctx_menu.type)
 
+
     @app_commands.guild_only()
     async def user_details(self, interaction: discord.Interaction, member: discord.Member) -> None:
+        
+        # Embed
         if member.bot == False:
             user_details = discord.Embed(title=f"{member.global_name}",
                                      description=f"Username: `{member}`\nID: `{member.id}`",
-                                     #color=discord.Color.blurple()
-                                     color=member.color)
+                                     color=discord.Color.blurple())
         else:
-            user_details = discord.Embed(title=f"{member.name}",
+            user_details = discord.Embed(title=f"{member.name} <:VerifiedApp1:1233353807182827584><:VerifiedApp2:1233353808743239690>",
                                      description=f"Username: `{member}`\nID: `{member.id}`",
                                      color=discord.Color.blurple())
         user_details.set_thumbnail(url=member.avatar)
@@ -49,6 +51,7 @@ class Utils_Member(commands.Cog):
                                value=f"Am {discord.utils.format_dt(member.created_at)}")
         user_details.add_field(name=f"<:NewMember:1233106416781230181> {member.guild.name} beigetreten",
                                value=f"Am {discord.utils.format_dt(member.joined_at)}")
+        
         await interaction.response.send_message(embed = user_details)
 
     ######### 
