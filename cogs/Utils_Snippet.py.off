@@ -1,6 +1,7 @@
 import datetime
 import discord
 from discord.ext import commands
+import os
 
 #-------------------------------------------------#
 #             Funktionsdefinitionen               #
@@ -32,9 +33,11 @@ class Utils_Snippet(commands.Cog):
 
     @commands.command()
     async def snippet(self, ctx, arg1=None, arg2=None):
-        if arg1 == "discord.py":
-            if arg1 == "cog":
-                await ctx.reply("")
+        if arg1 == "discord.py" or arg1 == "d.py":
+            if arg2 == "cog":
+                with open("snippets/cog.py", 'r') as file:
+                    content = file.read()
+                await ctx.reply(f"```py\n{content}\n```", mention_author=False)
             elif arg2 == None:
                 raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg2', annotation=str, kind=3))
             else:
