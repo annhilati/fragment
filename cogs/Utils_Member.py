@@ -41,7 +41,7 @@ class Utils_Member(commands.Cog):
         if member.bot == False:
             user_details = discord.Embed(title=f"{member.global_name}",
                                      description=f"Username: `{member}`\nID: `{member.id}`",
-                                     color=discord.Color.blurple())
+                                     color=member.top_role.color)
         else:
             user_details = discord.Embed(title=f"{member.name} <:VerifiedApp1:1233353807182827584><:VerifiedApp2:1233353808743239690>",
                                      description=f"Username: `{member}`\nID: `{member.id}`",

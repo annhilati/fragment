@@ -1,1 +1,1 @@
-pip install discord.js python-dotenv
+pip install discord.js python-dotenv mcstatus

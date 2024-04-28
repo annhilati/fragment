@@ -1,6 +1,7 @@
 import datetime
 import discord
 from discord.ext import commands
+from mcstatus import JavaServer
 
 #-------------------------------------------------#
 #             Funktionsdefinitionen               #
@@ -37,6 +38,6 @@ class Testing(commands.Cog):
 
     @commands.command()
     async def test2(self, ctx):
-        embed = discord.Embed(color=15774002)
-        embed.set_author(name="Es muss ein weiteres Argument angegeben werden.", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
-        await ctx.send(embed = embed)
+        server = JavaServer.lookup("mc.hypixel.net:25565")
+        status = server.status()
+        await ctx.send(f"{status.players.sample}")
