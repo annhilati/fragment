@@ -39,11 +39,11 @@ class Utils_Minecraft(commands.Cog):
     async def ping(self, interaction: discord.Interaction, server_ip: str):
         server = JavaServer.lookup(server_ip)
         status = server.status()
-        query = server.query()
+        #query = server.query()
 
-        server_details = discord.Embed(title=f"{server_ip}",
-                                     description=f"desc",
-                                     color=discord.Color.blurple())
+        await interaction.response.send_message(status.icon)
+
+        #server_details = discord.Embed(title=f"{server_ip}", description=f"desc", color=discord.Color.blurple())
         #server_details.set_thumbnail(url=status.icon)
         # user_details.add_field(name=f"<:Invite:1233105955038957578> Account erstellt",
         #                        value=f"Am {discord.utils.format_dt(member.created_at)}")
@@ -58,6 +58,6 @@ class Utils_Minecraft(commands.Cog):
         #     user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
         #                            value=f"Nicht im Timeout",)
 
-        await interaction.response.send_message(embed=server_details)
+        #await interaction.response.send_message(embed=server_details)
 
         
