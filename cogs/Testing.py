@@ -38,6 +38,4 @@ class Testing(commands.Cog):
 
     @commands.command()
     async def test2(self, ctx):
-        server = JavaServer.lookup("mc.hypixel.net:25565")
-        status = server.status()
-        await ctx.send(f"{status.players.sample}")
+        pass

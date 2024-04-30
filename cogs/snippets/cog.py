@@ -17,7 +17,6 @@ def log(text):
 async def setup(client):
     await client.add_cog(MyCog(client))
 
-
 class MyCog(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -25,3 +24,6 @@ class MyCog(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         log(f"[COGS] MyCog is ready")
+
+    # @commands.command()
+    # async def myFunction(self, ctx):

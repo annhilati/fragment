@@ -16,17 +16,17 @@ def log(text):
 #-------------------------------------------------#
 
 async def setup(client):
-    await client.add_cog(Bot_Status(client))
+    await client.add_cog(Bot_Activity(client))
 
-class Bot_Status(commands.Cog):
+class Bot_Activity(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.bot_statuses = cycle(["mit der Discord-API", "mit Python-Bots"])  # Liste aller Bot_Status
-        self.change_status.start()  # Startet den Bot_Status-Loop, wenn der Cog geladen wird
+        self.bot_statuses = cycle(["mit der Discord-API", "mit Python-Bots"])  # Liste aller Bot-Status
+        self.change_status.start()  # Startet den Bot-Status-Loop, wenn der Cog geladen wird
 
     @tasks.loop(seconds=5)
     async def change_status(self):
-        # Ändert den Bot-Bot_Status
+        # Ändert den Bot-Status
         await self.client.change_presence(activity=discord.Game(next(self.bot_statuses)))
 
     @change_status.before_loop
@@ -36,4 +36,4 @@ class Bot_Status(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Bot_Status is ready")
+        log(f"[COGS] Bot_Activity is ready")
