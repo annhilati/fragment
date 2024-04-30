@@ -34,9 +34,14 @@ class Commands_Tag(commands.Cog):
     async def tag(self, ctx, arg1=None, arg2=None):
         content = None
         if arg1 == "law":
-            if arg2 == "discordmod" or "dmod" or "moddeddiscord" or "discord-mod" or "modded-discord":
+
+            if arg2 in ["discordmod", "dmod", "moddeddiscord", "discord-mod", "modded-discord"]:
                 with open("cogs/tags/law_modded-discord.md", 'r') as file:
                     content = file.read()
+                await ctx.message.delete()
+            
+            #elif arg2 == "test":
+                
                 
 
         #-------------------------------------------------#
@@ -49,10 +54,11 @@ class Commands_Tag(commands.Cog):
             else:
                 raise commands.BadArgument("Unbekannter Tag")
                 content = None
+                
+            await ctx.send(f"{content}", mention_author=False)
+
         elif arg1 == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
-            content = None
         else:
-            raise commands.BadArgument("Unbekannter Tag")
-            content = None
-        await ctx.reply(f"{content}", mention_author=False)
+            raise commands.BadArgument("Unbekannter Tag oder Tag-Kategorie")
+        
