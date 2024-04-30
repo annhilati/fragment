@@ -11,6 +11,9 @@ import os
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
+def fix(text):
+    return (text.encode("utf-8")).decode("utf-8")
+
 #-------------------------------------------------#
 #                cog-Deklaration                  #
 #-------------------------------------------------#
@@ -31,31 +34,27 @@ class Commands_Tag(commands.Cog):
     #-------------------------------------------------#
 
     @commands.command()
-    async def tag(self, ctx, arg1=None, arg2=None):
+    async def tag(self, ctx, arg1=None, arg2=None, arg3=None):
         content = None
         if arg1 == "law":
 
             if arg2 in ["discordmod", "dmod", "moddeddiscord", "discord-mod", "modded-discord"]:
                 with open("cogs/tags/law_modded-discord.md", 'r') as file:
                     content = file.read()
-                await ctx.message.delete()
+                    await ctx.message.delete()
+                    await ctx.send(f"{content}", mention_author=False, suppress_embeds=True)
             
             #elif arg2 == "test":
                 
-                
-
+    
         #-------------------------------------------------#
         #                  Error Raising                  #
         #-------------------------------------------------#
 
             elif arg2 == None:
                 raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg2', annotation=str, kind=3))
-                content = None
             else:
                 raise commands.BadArgument("Unbekannter Tag")
-                content = None
-                
-            await ctx.send(f"{content}", mention_author=False)
 
         elif arg1 == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
