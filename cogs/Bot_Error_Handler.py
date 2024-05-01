@@ -36,12 +36,13 @@ class Bot_Error_Handler(commands.Cog):
             embed.set_author(name="Ein Argument entsprach nicht den Erwartungen", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
             await ctx.reply(embed = embed, mention_author=False)
 
-        elif isinstance(error, commands.MissingPermissions):
-            embed = discord.Embed(title=f"{error}", color=15774002)
-            embed.set_author(name="Dir fehlt die Berechtigung dazu", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
-            await ctx.reply(embed = embed, mention_author=False)
+        # elif isinstance(error, commands.MissingPermissions):
+        #     embed = discord.Embed(title=f"{error}", color=15774002)
+        #     embed.set_author(name="Dir fehlt die Berechtigung dazu", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
+        #     await ctx.reply(embed = embed, mention_author=False)
         
         elif isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title=f"{error}", color=15774002)
+            #embed = discord.Embed(title=f"{error}", color=15774002)
+            embed = discord.Embed(title=f"", color=15774002)
             embed.set_author(name="Es muss ein weiteres Argument angegeben werden.", icon_url="https://cdn.discordapp.com/emojis/1233093266916773991.webp")
             await ctx.reply(embed = embed, mention_author=False)

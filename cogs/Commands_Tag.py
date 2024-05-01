@@ -39,24 +39,24 @@ class Commands_Tag(commands.Cog):
         didError = None
 
         if arg1 in ["discordmod", "dmod", "moddeddiscord", "discord-mod", "modded-discord"]:
-            with open("cogs/tags/modded-discord.md", 'r') as file:
+            with open("cogs/tags/modded-discord.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         elif arg1 in ["protocolls", "ssh", "ftp"]:
-            with open("cogs/tags/protocolls.md", 'r') as file:
+            with open("cogs/tags/protocolls.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         elif arg1 in ["port"]:
-            with open("cogs/tags/port.md", 'r') as file:
+            with open("cogs/tags/port.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         #-------------------------------------------------#
-        #                  Error Raising                  #
+        #                     System                      #
         #-------------------------------------------------#
 
         elif arg1 == None:
-            raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
-            didError = True
+            with open("cogs/tags/.tags.md", 'r', encoding="UTF-8") as file:
+                    content = f"{file.read()}"
         else:
             raise commands.BadArgument("Unbekannter Tag oder Tag-Kategorie")
             didError = True
