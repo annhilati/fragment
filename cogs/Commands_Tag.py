@@ -41,7 +41,10 @@ class Commands_Tag(commands.Cog):
 
             if arg2 in ["discordmod", "dmod", "moddeddiscord", "discord-mod", "modded-discord"]:
                 with open("cogs/tags/law_modded-discord.md", 'r') as file:
-                    content = f"{arg3}\n{file.read()}"
+                    if arg3 == None:
+                        content = f"{file.read()}"
+                    else:
+                        content = f"{arg3}\n{file.read()}"
                 
         #-------------------------------------------------#
         #                  Error Raising                  #
