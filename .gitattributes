@@ -1,3 +1,2 @@
-.testbot/** linguist-vendored
-cogs/snippets/** linguist-documentation
-cogs/tags/**.md linguist-detectable
+assets/snippets/** linguist-documentation
+assets/tags/**.md linguist-detectable
