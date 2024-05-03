@@ -34,7 +34,7 @@ class Commands_Snippet(commands.Cog):
     async def snippet(self, ctx, arg1=None, arg2=None):
         if arg1 == "discord.py" or arg1 == "d.py":
             if arg2 == "cog":
-                with open("cogs/snippets/cog.py", 'r') as file:
+                with open("assets/snippets/cog.py", 'r') as file:
                     content = file.read()
                 await ctx.reply(f"## discord.py Cog\n```py\n{content}\n```", mention_author=False)
 

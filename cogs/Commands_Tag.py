@@ -39,15 +39,15 @@ class Commands_Tag(commands.Cog):
         didError = None
 
         if arg1 in ["discordmod", "dmod", "moddeddiscord", "discord-mod", "modded-discord"]:
-            with open("cogs/tags/modded-discord.md", 'r', encoding="UTF-8") as file:
+            with open("assets/tags/modded-discord.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         elif arg1 in ["protocolls", "ssh", "ftp"]:
-            with open("cogs/tags/protocolls.md", 'r', encoding="UTF-8") as file:
+            with open("assets/tags/protocolls.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         elif arg1 in ["port"]:
-            with open("cogs/tags/port.md", 'r', encoding="UTF-8") as file:
+            with open("assets/tags/port.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
 
         #-------------------------------------------------#
@@ -55,7 +55,7 @@ class Commands_Tag(commands.Cog):
         #-------------------------------------------------#
 
         elif arg1 == None:
-            with open("cogs/tags/.tags.md", 'r', encoding="UTF-8") as file:
+            with open("assets/tags/.tags.md", 'r', encoding="UTF-8") as file:
                     content = f"{file.read()}"
         else:
             raise commands.BadArgument("Unbekannter Tag oder Tag-Kategorie")
