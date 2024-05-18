@@ -16,9 +16,9 @@ def log(text):
 #-------------------------------------------------#
 
 async def setup(client):
-    await client.add_cog(Utils_Member(client))
+    await client.add_cog(App_Member(client))
 
-class Utils_Member(commands.Cog):
+class App_Member(commands.Cog):
     def __init__(self, client: commands.Bot) -> None:
         self.client = client
 
@@ -66,7 +66,7 @@ class Utils_Member(commands.Cog):
         
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Utils_Member is ready")
+        log(f"[COGS] App_Member is ready")
 
     @commands.command()
     async def ping(self, ctx):
