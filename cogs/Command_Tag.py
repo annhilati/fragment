@@ -19,15 +19,15 @@ def fix(text):
 #-------------------------------------------------#
 
 async def setup(client):
-    await client.add_cog(Commands_Tag(client))
+    await client.add_cog(Command_Tag(client))
 
-class Commands_Tag(commands.Cog):
+class Command_Tag(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Commands_Tag is ready")
+        log(f"[COGS] Command_Tag is ready")
 
     #-------------------------------------------------#
     #                Tag-Supercommand                 #

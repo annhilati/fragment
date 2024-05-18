@@ -16,15 +16,15 @@ def log(text):
 #-------------------------------------------------#
 
 async def setup(client):
-    await client.add_cog(Commands_Snippet(client))
+    await client.add_cog(Command_Snippet(client))
 
-class Commands_Snippet(commands.Cog):
+class Command_Snippet(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Commands_Snippet is ready")
+        log(f"[COGS] Command_Snippet is ready")
 
     #-------------------------------------------------#
     #              Snippet-Supercommand               #
