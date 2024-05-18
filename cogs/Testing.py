@@ -33,30 +33,33 @@ class Testing(commands.Cog):
 
     @commands.command()
     async def test(self, ctx):
-        member = discord.User(id=1081004946872352958)
-        if member.bot == False:
-            user_details = discord.Embed(title=f"{member.global_name}",
-                                     description=f"Username: `{member}`\nID: `{member.id}`",
-                                     color=member.top_role.color)
-        else:
-            user_details = discord.Embed(title=f"{member.name} <:VerifiedApp1:1233353807182827584><:VerifiedApp2:1233353808743239690>",
-                                     description=f"Username: `{member}`\nID: `{member.id}`",
-                                     color=discord.Color.blurple())
-        user_details.set_thumbnail(url=member.avatar)
-        user_details.add_field(name=f"<:Invite:1233105955038957578> Account erstellt",
-                               value=f"Am {discord.utils.format_dt(member.created_at)}")
-        user_details.add_field(name=f"<:NewMember:1233106416781230181> {member.guild.name} beigetreten",
-                               value=f"Am {discord.utils.format_dt(member.joined_at)}")
-        
-        user_details.add_field(name="  ", value="  ", inline=False) # Dieses Feld sorgt für eine Lücke zwischen den Reihen
-        if member.timed_out_until != None:
-            user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
-                                   value=f"Bis <t:{str(member.timed_out_until.timestamp())[:-4]}:R>",)
-        else:
-            user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
-                                   value=f"Nicht im Timeout",)
-        
-        await ctx.send(embed = user_details)
+        try:
+            user = await self.fetch_user(1081004946872352958)
+            if user.bot == False:
+                user_details = discord.Embed(title=f"{user.global_name}",
+                                        description=f"Username: `{user}`\nID: `{user.id}`",
+                                        color=user.top_role.color)
+            else:
+                user_details = discord.Embed(title=f"{user.name} <:VerifiedApp1:1233353807182827584><:VerifiedApp2:1233353808743239690>",
+                                        description=f"Username: `{user}`\nID: `{user.id}`",
+                                        color=discord.Color.blurple())
+            user_details.set_thumbnail(url=user.avatar)
+            user_details.add_field(name=f"<:Invite:1233105955038957578> Account erstellt",
+                                value=f"Am {discord.utils.format_dt(user.created_at)}")
+            user_details.add_field(name=f"<:NewMember:1233106416781230181> {user.guild.name} beigetreten",
+                                value=f"Am {discord.utils.format_dt(user.joined_at)}")
+            
+            user_details.add_field(name="  ", value="  ", inline=False) # Dieses Feld sorgt für eine Lücke zwischen den Reihen
+            if user.timed_out_until != None:
+                user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
+                                    value=f"Bis <t:{str(user.timed_out_until.timestamp())[:-4]}:R>",)
+            else:
+                user_details.add_field(name=f"<:Timeout:1233356546717515826> Timeout",
+                                    value=f"Nicht im Timeout",)
+            
+            await ctx.send(embed = user_details)
+        except:
+            await ctx.send("Error")
 
     @commands.command()
     async def test2(self, ctx):
