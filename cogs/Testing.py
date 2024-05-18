@@ -34,7 +34,9 @@ class Testing(commands.Cog):
     @commands.command()
     async def test(self, ctx):
         try:
-            user = await self.fetch_user(1081004946872352958)
+            guild = self.get_guild(890190896530849792)
+
+            user = await guild.fetch_member(890190896530849792)
             if user.bot == False:
                 user_details = discord.Embed(title=f"{user.global_name}",
                                         description=f"Username: `{user}`\nID: `{user.id}`",
