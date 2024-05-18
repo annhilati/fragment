@@ -1,7 +1,7 @@
 # Modifikationen des Discord-Clients sind per Discord ToS illegal
 
 Die Modifizierung von Discord verstößt gegen die ToS (Terms of Servcie) von Discord. 
-Beispiele für Modifikationen sind BetterDiscord, Vencord und deren Plugins.
+Beispiele dafür sind Modifikationen wie BetterDiscord und Vencord und jegliche Eingaben in die Webkonsole.
 
 <:Report:1235159728892543077>  **Was kann mir passieren?**
 Discord kann Accounts, die Modifikationen verwenden grundsätzlich sperren. Praktisch passiert das aber eigentlich nicht, sofern du nicht gegen andere ToS verstößt oder dein Datenverkehr andersweitig auffällt.
