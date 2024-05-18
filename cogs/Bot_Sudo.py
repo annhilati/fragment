@@ -32,6 +32,10 @@ class Bot_Sudo(commands.Cog):
     @commands.command()
     async def sudo(self, ctx, arg1=None, arg2=None):
         log(f"[SUDO] {ctx.author.name} ({ctx.author.id}) executed \"{ctx.message.content}\" in {ctx.guild.name} ({ctx.guild.id})")
+        
+        #-------------------------------------------------#
+        #                      Sync                       #
+        #-------------------------------------------------#
         if arg1 == "sync":
             if arg2 == str(self.client.user.id):
                 await self.client.tree.sync()
@@ -42,10 +46,15 @@ class Bot_Sudo(commands.Cog):
                 await ctx.reply(embed = embed, mention_author=False, silent=True, delete_after=10)
                 
                 log(f"[SYNC] Global synchronization of all App-Commands requested. Synchronization can take several minutes to hours.")
+            
             elif arg2 == None:
                 raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg2', annotation=str, kind=3))
             else:
                 raise commands.BadArgument("Falscher Code")
+        
+        #-------------------------------------------------#
+        #                  Error-Raiser                   #
+        #-------------------------------------------------#
         elif arg1 == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
         else:

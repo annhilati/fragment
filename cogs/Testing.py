@@ -33,8 +33,7 @@ class Testing(commands.Cog):
 
     @commands.command()
     async def test(self, ctx):
-        await ctx.send("https://discord.com/quests/1227767407154561034")
-        await ctx.send("https://discord.com/quests/1218004004206804992")
+        pass
 
     @commands.command()
     async def test2(self, ctx):
