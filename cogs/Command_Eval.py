@@ -38,4 +38,4 @@ class Command_Eval(commands.Cog):
             answer = numexpr.evaluate(expression)
             await ctx.reply(f"```\n>>> {expression}\n= {answer}```", mention_author=False)
         except:
-            raise commands.BadArgument("Ungültiger Ausdruck. Es wird ein algebraischer Term erwartet")
+            raise commands.BadArgument("Ungültiger Ausdruck. Es wird ein algebraischer Term oder Python-Ausdruck erwartet")
