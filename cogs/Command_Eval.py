@@ -21,9 +21,9 @@ def fix(text):
 #-------------------------------------------------#
 
 async def setup(client):
-    await client.add_cog(Command_Tag(client))
+    await client.add_cog(Command_Eval(client))
 
-class Command_Tag(commands.Cog):
+class Command_Eval(commands.Cog):
     def __init__(self, client):
         self.client = client
 
