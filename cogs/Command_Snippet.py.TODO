@@ -24,7 +24,7 @@ class Command_Snippet(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Command_Snippet is ready")
+        log(f"[COGS] {__name__} is ready")
 
     #-------------------------------------------------#
     #              Snippet-Supercommand               #

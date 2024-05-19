@@ -23,7 +23,7 @@ class Bot_Error_Handler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Bot_Error_Handler is ready")
+        log(f"[COGS] {__name__} is ready")
 
     #-------------------------------------------------#
     #                Error-Handling                   #

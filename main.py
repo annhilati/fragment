@@ -24,7 +24,7 @@ client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 #                 Hauptprogramm                   #
 #-------------------------------------------------#
 
-async def load():
+async def loadCogs():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             await client.load_extension(f"cogs.{filename[:-3]}")
@@ -33,7 +33,7 @@ async def load():
 async def main():
     load_dotenv() # Läd die Umgebungsvariabeln
     async with client:
-        await load()
+        await loadCogs()
         await client.start(str(os.getenv("BOT_TOKEN")))
 
 @client.event

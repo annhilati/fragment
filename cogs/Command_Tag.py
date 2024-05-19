@@ -27,7 +27,7 @@ class Command_Tag(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Command_Tag is ready")
+        log(f"[COGS] {__name__} is ready")
 
     #-------------------------------------------------#
     #                Tag-Supercommand                 #

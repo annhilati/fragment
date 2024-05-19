@@ -23,7 +23,7 @@ class Bot_Sudo(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] Bot_Sudo is ready")
+        log(f"[COGS] {__name__} is ready")
         
     #-------------------------------------------------#
     #                  Sudo-Befehle                   #

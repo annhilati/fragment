@@ -66,7 +66,7 @@ class App_Member(commands.Cog):
         
     @commands.Cog.listener()
     async def on_ready(self):
-        log(f"[COGS] App_Member is ready")
+        log(f"[COGS] {__name__} is ready")
 
     @commands.command()
     async def ping(self, ctx):
