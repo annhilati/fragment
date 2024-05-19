@@ -35,7 +35,7 @@ class Command_Tag(commands.Cog):
     #                  Eval-Command                   #
     #-------------------------------------------------#
 
-    @commands.command(aliases=["eval", "calc", "solve"])
+    @commands.command(aliases=["calc", "solve"])
     async def eval(self, ctx, *, expression: str):
         try:
             answer = numexpr.evaluate(expression)
