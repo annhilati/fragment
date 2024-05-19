@@ -38,6 +38,6 @@ class Command_Eval(commands.Cog):
     async def eval(self, ctx, *, expression: str):
         try:
             answer = numexpr.evaluate(expression)
-            await ctx.reply(f"{expression} = {answer}", mention_author=False)
+            await ctx.reply(f"```\n>>> {expression}\n= {answer}```", mention_author=False)
         except:
             raise commands.BadArgument("Ungültiger Ausdruck")
