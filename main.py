@@ -1,17 +1,9 @@
+from lib.system import *
 import asyncio
-import datetime
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import os
-
-#-------------------------------------------------#
-#             Funktionsdefinitionen               #
-#                     log()                       #
-#-------------------------------------------------#
-
-def log(text):
-    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
 #-------------------------------------------------#
 #               Initialisierung                   #
