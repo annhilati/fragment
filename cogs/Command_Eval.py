@@ -12,9 +12,6 @@ import numexpr
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
-def fix(text):
-    return (text.encode("utf-8")).decode("utf-8")
-
 #-------------------------------------------------#
 #                cog-Deklaration                  #
 #-------------------------------------------------#
@@ -40,4 +37,4 @@ class Command_Eval(commands.Cog):
             answer = numexpr.evaluate(expression)
             await ctx.reply(f"```\n>>> {expression}\n= {answer}```", mention_author=False)
         except:
-            raise commands.BadArgument("Ungültiger Ausdruck")
+            raise commands.BadArgument("Ungültiger Ausdruck. Es wird ein algebraischer Term erwartet")

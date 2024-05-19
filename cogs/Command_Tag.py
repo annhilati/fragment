@@ -10,9 +10,6 @@ from discord.ext import commands
 def log(text):
     return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
-def fix(text):
-    return (text.encode("utf-8")).decode("utf-8")
-
 #-------------------------------------------------#
 #                cog-Deklaration                  #
 #-------------------------------------------------#
