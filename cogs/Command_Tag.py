@@ -29,7 +29,7 @@ class Command_Tag(commands.Cog):
     #                Tag-Supercommand                 #
     #-------------------------------------------------#
 
-    @commands.command()
+    @commands.command(aliases=["t"])
     async def tag(self, ctx, arg1=None):
         content = None
         didError = None
