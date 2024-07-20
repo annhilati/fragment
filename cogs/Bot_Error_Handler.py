@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from ..lib.system import log
+from lib.system import log
 
 
 class Bot_Error_Handler(commands.Cog):

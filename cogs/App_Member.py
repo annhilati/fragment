@@ -3,7 +3,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from ..lib.system import log
+from lib.system import log
 
 
 async def setup(bot):
