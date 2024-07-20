@@ -3,24 +3,15 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-#-------------------------------------------------#
-#             Funktionsdefinitionen               #
-#                     log()                       #
-#-------------------------------------------------#
+from ..lib.system import log
 
-def log(text):
-    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
 
-#-------------------------------------------------#
-#                cog-Deklaration                  #
-#-------------------------------------------------#
-
-async def setup(client):
-    await client.add_cog(App_Member(client))
+async def setup(bot):
+    await bot.add_cog(App_Member(bot))
 
 class App_Member(commands.Cog):
-    def __init__(self, client: commands.Bot) -> None:
-        self.client = client
+    def __init__(self, bot: commands.Bot) -> None:
+        self.bot = bot
 
     #-------------------------------------------------#
     #          Benutzerdetails-Kontextpunkt           #
@@ -29,9 +20,9 @@ class App_Member(commands.Cog):
         self.ctx_menu = app_commands.ContextMenu(
             name='Benutzerdetails anzeigen',
             callback=self.user_details)
-        self.client.tree.add_command(self.ctx_menu)
+        self.bot.tree.add_command(self.ctx_menu)
     async def cog_unload(self) -> None:
-        self.client.tree.remove_command(self.ctx_menu.name, type=self.ctx_menu.type)
+        self.bot.tree.remove_command(self.ctx_menu.name, type=self.ctx_menu.type)
 
 
     @app_commands.guild_only()
@@ -67,7 +58,3 @@ class App_Member(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         log(f"[COGS] {__name__} is ready")
-
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send("Pong!")

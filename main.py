@@ -1,36 +1,28 @@
-from lib.system import *
+import os
 import asyncio
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
-import os
 
-#-------------------------------------------------#
-#               Initialisierung                   #
-#                 Botinstanz                      #
-#-------------------------------------------------#
+from lib.system import *
 
-client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
-
-#-------------------------------------------------#
-#                 Hauptprogramm                   #
-#-------------------------------------------------#
+bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 async def loadCogs():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
-            await client.load_extension(f"cogs.{filename[:-3]}")
+            await bot.load_extension(f"cogs.{filename[:-3]}")
             log(f"[COGS] cogs/{filename} is loaded")
 
 async def main():
     load_dotenv() # Läd die Umgebungsvariabeln
-    async with client:
+    async with bot:
         await loadCogs()
-        await client.start(str(os.getenv("BOT_TOKEN")))
+        await bot.start(str(os.getenv("BOT_TOKEN")))
 
-@client.event
+@bot.event
 async def on_ready():
     log(f"[AUTH] Bot is connected")
-    log(f"[AUTH] Logged in as {client.user} (ID: {client.user.id})")
+    log(f"[AUTH] Logged in as {bot.user} (ID: {bot.user.id})")
 
 asyncio.run(main()) # Diese Zeile wird fortlaufend ausgeführt und sollte deswegen am Ende stehen
