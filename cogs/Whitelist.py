@@ -48,7 +48,7 @@ class Whitelist(commands.Cog):
             
             self.whitelist.append({'name': name, 'uuid': uuid})
             self.save_whitelist()
-            await ctx.send(f"{name} wurde zur Whitelist hinzugefügt.")
+            await ctx.reply(f"{name} wurde zur Whitelist hinzugefügt.")
         elif cmd == "list":
             await ctx.reply(f"```json\n{getfiletext("data/whitelist.json")}```", mention_author=False, suppress_embeds=True)
         elif cmd == None:
