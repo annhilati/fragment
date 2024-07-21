@@ -70,7 +70,7 @@ class Whitelist(commands.Cog):
             await ctx.reply(f"{name} wurde von der Whitelist entfernt.")
 
         elif cmd == "list":
-            await ctx.reply(f"```json\n{filecontent("data/whitelist.json")}```", mention_author=False, suppress_embeds=True)
+            await ctx.reply(f"```json\n{filecontent("temp/whitelist.json")}```", mention_author=False, suppress_embeds=True)
         
         elif cmd == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='cmd', annotation=str, kind=3))
