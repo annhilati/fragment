@@ -19,11 +19,10 @@ class Whitelist(commands.Cog):
 
     def load_whitelist(self):
         if repo.exists("data/whitelist.json"):
-            repo.download("data/whitelist.json", "temp/whitelist.json", True)
+            repo.download(file="data/whitelist.json", destination="temp/whitelist.json", overwrite=True)
 
-            if os.path.exists(self.filepath):
-                with open(self.filepath, 'r') as f:
-                    self.whitelist = json.load(f)
+            with open(self.filepath, 'r') as f:
+                self.whitelist = json.load(f)
         else:
             self.whitelist = []
 
