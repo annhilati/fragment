@@ -4,7 +4,7 @@ import json
 import os
 import requests
 from dotenv import load_dotenv
-from acemeta import log, filecontent, GitHub
+from acemeta import log, fileToStr, GitHub
 
 load_dotenv()
 
@@ -19,10 +19,11 @@ class Whitelist(commands.Cog):
 
     def load_whitelist(self):
         if repo.exists("data/whitelist.json"):
-            repo.download(file="data/whitelist.json", destination="temp/whitelist.json", overwrite=True)
+            repo.download("data/whitelist.json", "temp/whitelist.json", overwrite=True)
 
-            with open(self.filepath, 'r') as f:
-                self.whitelist = json.load(f)
+            if os.path.exists(self.filepath):
+                with open(self.filepath, 'r') as f:
+                    self.whitelist = json.load(f)
         else:
             self.whitelist = []
 
@@ -54,8 +55,10 @@ class Whitelist(commands.Cog):
                 return
             
             self.whitelist.append({'name': name, 'uuid': uuid})
-            self.save_whitelist()
-            await ctx.reply(f"{name} wurde zur Whitelist hinzugefügt.")
+            try:
+                self.save_whitelist()
+            except FileExistsError: ...                    
+            await ctx.reply(f"{name} wurde zur Whitelist hinzugefügt.", mention_author=False, suppress_embeds=True)
         
         elif cmd == "remove":
             if not self.inWhitelist(name):
@@ -63,17 +66,19 @@ class Whitelist(commands.Cog):
                 return
             
             self.whitelist = [entry for entry in self.whitelist if entry['name'] != name]
-            self.save_whitelist()
+            try:
+                self.save_whitelist()
+            except FileExistsError: ... 
             await ctx.reply(f"{name} wurde von der Whitelist entfernt.")
 
         elif cmd == "list":
-            await ctx.reply(f"```json\n{filecontent("temp/whitelist.json")}```", mention_author=False, suppress_embeds=True)
+            await ctx.reply(f"```json\n{fileToStr("temp/whitelist.json")}```", mention_author=False, suppress_embeds=True)
         
         elif cmd == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='cmd', annotation=str, kind=3))
         
         else:
-            raise commands.BadArgument(f"Unbekannter Befehl: {cmd}")
+            raise commands.BadArgument(f"Unbekannter Befehl: {cmd}\nVerwende `add`, `remove` und `list`")
 
     @commands.Cog.listener()
     async def on_ready(self):
