@@ -2,3 +2,4 @@
 cogs/__pycache__/*
 lib/__pycache__/*
 temp/
+test.py

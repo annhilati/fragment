@@ -8,9 +8,7 @@ from acemeta import log, filecontent, GitHub
 
 load_dotenv()
 
-GH_TOKEN = os.getenv("GH_TOKEN")
-
-repo = GitHub.Repository("annhilati/fragment", GH_TOKEN) 
+repo = GitHub.Repository("annhilati/fragment", token=os.getenv("GH_TOKEN")) 
 
 class Whitelist(commands.Cog):
 
