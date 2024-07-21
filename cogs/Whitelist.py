@@ -25,7 +25,7 @@ class Whitelist(commands.Cog):
                 with open(self.filepath, 'r') as f:
                     self.whitelist = json.load(f)
         else:
-            with open(self.filepath) as f:
+            with open(self.filepath, "w") as f:
                 f.write("[]")
             self.whitelist = []
 
