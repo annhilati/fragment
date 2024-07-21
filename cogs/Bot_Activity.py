@@ -1,9 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 from itertools import cycle
-
-from lib.system import log
-
+from acemeta import log
 
 class Bot_Activity(commands.Cog):
     def __init__(self, bot):

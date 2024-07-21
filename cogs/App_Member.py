@@ -2,9 +2,7 @@ import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
-
-from lib.system import log
-
+from acemeta import log
 
 async def setup(bot):
     await bot.add_cog(App_Member(bot))

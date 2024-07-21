@@ -3,8 +3,7 @@ import asyncio
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
-
-from lib.system import *
+from acemeta import log
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
