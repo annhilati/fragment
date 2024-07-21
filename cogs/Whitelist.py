@@ -32,7 +32,7 @@ class Whitelist(commands.Cog):
     def save_whitelist(self):
         with open(self.filepath, 'w') as f:
             json.dump(self.whitelist, f, indent=4)
-        repo.upload(self.filepath, "data/whitelist.json", "Whitelist Sync", True)
+        repo.upload("temp/whitelist.json", "data/whitelist.json", "Whitelist Sync", True)
 
     def inWhitelist(self, name):
         return any(entry['name'] == name for entry in self.whitelist)
