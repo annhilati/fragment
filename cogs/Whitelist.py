@@ -55,7 +55,7 @@ class Whitelist(commands.Cog):
                 return
             
             uuid = self.getUUID(name)
-            if uuid is None:
+            if uuid is None or name is None:
                 await ctx.reply(f"{name} ist kein registrierter Minecraft-Name.", mention_author=False, suppress_embeds=True)
                 return
             
@@ -74,7 +74,7 @@ class Whitelist(commands.Cog):
             try:
                 self.save_whitelist()
             except FileExistsError: ... 
-            await ctx.reply(f"{name} wurde von der Whitelist entfernt.")
+            await ctx.reply(f"{name} wurde von der Whitelist entfernt.", mention_author=False, suppress_embeds=True)
 
         elif cmd == "list":
             await ctx.reply(f"```json\n{fileToStr('temp/whitelist.json')}```", mention_author=False, suppress_embeds=True)
