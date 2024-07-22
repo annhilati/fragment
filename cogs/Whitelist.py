@@ -26,7 +26,8 @@ class Whitelist(commands.Cog):
                     self.whitelist = json.load(f)
         else:
             with open(self.filepath, "w") as f:
-                f.write("[]")
+                # Schreibe eine leere Liste als JSON in die Datei
+                json.dump([], f)
             self.whitelist = []
 
     def save_whitelist(self):
@@ -74,7 +75,7 @@ class Whitelist(commands.Cog):
             await ctx.reply(f"{name} wurde von der Whitelist entfernt.")
 
         elif cmd == "list":
-            await ctx.reply(f"```json\n{fileToStr("temp/whitelist.json")}```", mention_author=False, suppress_embeds=True)
+            await ctx.reply(f"```json\n{fileToStr('temp/whitelist.json')}```", mention_author=False, suppress_embeds=True)
         
         elif cmd == None:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='cmd', annotation=str, kind=3))
