@@ -1,25 +1,12 @@
-import datetime
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
+from acemeta import log
 
-#-------------------------------------------------#
-#             Funktionsdefinitionen               #
-#                     log()                       #
-#-------------------------------------------------#
 
-def log(text):
-    return print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "] " + text)
-
-#-------------------------------------------------#
-#                cog-Deklaration                  #
-#-------------------------------------------------#
-
-async def setup(client):
-    await client.add_cog(Bot_Sudo(client))
 
 class Bot_Sudo(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -37,8 +24,8 @@ class Bot_Sudo(commands.Cog):
         #                      Sync                       #
         #-------------------------------------------------#
         if arg1 == "sync":
-            if arg2 == str(self.client.user.id):
-                await self.client.tree.sync()
+            if arg2 == str(self.bot.user.id):
+                await self.bot.tree.sync()
 
                 await ctx.message.add_reaction("✅")
                 embed = discord.Embed(description=f"Es wurde eine Anfrage zur Synchronisation der App-Commands für alle Guilden versendet.\nDie Synchronisation kann einige Minuten bis Stunden dauern.", color=3908961)
@@ -59,3 +46,6 @@ class Bot_Sudo(commands.Cog):
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
         else:
             raise commands.MissingRequiredArgument(param=commands.Parameter(name='arg1', annotation=str, kind=3))
+        
+async def setup(bot):
+    await bot.add_cog(Bot_Sudo(bot))
